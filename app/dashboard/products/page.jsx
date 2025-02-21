@@ -7,18 +7,18 @@ import { deleteReport } from "@/app/lib/actions";
 
 const Productspage = async ({ searchParams }) => {
     const q = searchParams?.q || "";
-    const page = Number(searchParams?.page) || 1; 
+    const page = Number(searchParams?.page) || 1; // Ensure page is a number
 
     const { count, reports } = await fetchReports(q, page);
 
+    // Corrected syntax for Promise.all()
     const users = await Promise.all(
-        reports.map(async (report) => {
-            try {
-                return await fetchUser(report.userId);
-            } catch (error) {
+        reports.map((report) =>
+            fetchUser(report.userId).catch((error) => {
                 console.error("Error fetching user:", error);
-                return null;
-        })
+                return null; // Return null if fetching fails
+            })
+        )
     );
 
     return (
