@@ -38,7 +38,7 @@ export const addUser = async (formData)=>{
 
 export const deleteUser = async (formData)=>{
     "use server"
-    const { id } =
+    const id =
     Object.fromEntries(formData);
 
     try {

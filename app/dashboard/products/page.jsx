@@ -11,15 +11,16 @@ const Productspage = async ({ searchParams }) => {
 
     const { count, reports } = await fetchReports(q, page);
 
-    // Corrected syntax for Promise.all()
-    const users = await Promise.all(
-        reports.map((report) =>
-            fetchUser(report.userId).catch((error) => {
-                console.error("Error fetching user:", error);
-                return null; // Return null if fetching fails
-            })
-        )
-    );
+    const users = [];
+    for (const report of reports) {
+        try {
+            const user = await fetchUser(report.userId);
+            users.push(user);
+        } catch (error) {
+            console.error("Error fetching user:", error);
+            users.push(null); // Fallback for failed requests
+        }
+    }
 
     return (
         <div className={styles.container}>
