@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { connectToDB } from "@/app/lib/utils";
 import { User } from "@/app/lib/models";
 
-export async function GET(request) {
+export async function GET() {
   try {
     await connectToDB();
     const users = await User.find().sort({ createdAt: -1 }).limit(4); // Get latest 4 users

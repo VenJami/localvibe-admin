@@ -1,5 +1,4 @@
 import styles from "@/app/ui/dashboard/products/singleProduct/singleProduct.module.css";
-import Image from "next/image";
 import { fetchReport } from "@/app/lib/data";
 import { deleteReport } from "@/app/lib/actions";
 
