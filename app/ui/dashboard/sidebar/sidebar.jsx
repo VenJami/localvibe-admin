@@ -4,8 +4,6 @@ import styles from "./sidebar.module.css"
 import {
     MdDashboard,
     MdSupervisedUserCircle,
-    MdShoppingBag,
-    MdAttachMoney,
     MdWork,
     MdAnalytics,
     MdPeople,
